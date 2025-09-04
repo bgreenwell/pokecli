@@ -1,87 +1,115 @@
-# pokecli 🐾
+# PokeCLI
 
-A fast and user-friendly command line tool for searching, retrieving, and displaying detailed Pokémon data from the PokeAPI. Built for trainers, developers, and enthusiasts who want Pokémon info at their fingertips! ⚡️
+A fast and user-friendly command line tool for querying Pokemon data via the PokeAPI. Built with Rust for performance and reliability.
 
----
+## Features
 
-## Features ✨
-- Search for Pokémon by name, type, or ID
-- View detailed stats, abilities, and evolutions
-- Filter and format output for easy reading
-- Fast queries powered by PokeAPI
-- Built with Rust for performance and reliability 🦀
-- Easy to use CLI with helpful flags and options
+- **Pokemon Queries**: Search Pokemon by name or ID
+- **Multiple Output Formats**: Table (default), JSON, and YAML output
+- **Caching**: Built-in memory caching for improved performance  
+- **Extensible**: Designed to support moves, items, and other PokeAPI resources
+- **Async**: Non-blocking HTTP requests with proper error handling
 
----
-
-## Installation 🚀
+## Installation
 
 ### Prerequisites
-- Rust (https://rustup.rs)
+- Rust 1.70+ (https://rustup.rs)
 
 ### Build from Source
-```sh
-# Clone the repo
-git clone https://github.com/username/pokecli.git
+```bash
+# Clone the repository
+git clone https://github.com/bgreenwell/pokecli.git
 cd pokecli
 
-# Build the binary
+# Build the project
 cargo build --release
 
 # Run pokecli
 ./target/release/pokecli --help
 ```
 
----
+## Usage
 
-## Usage 🕹️
+### Basic Pokemon Queries
+```bash
+# Query by name
+pokecli pokemon pikachu
 
-```sh
-pokecli pikachu
-pokecli --type fire
-pokecli --id 25
-pokecli --help
+# Query by ID  
+pokecli pokemon 25
+
+# Detailed information
+pokecli pokemon charizard --detailed
+
+# Verbose output
+pokecli pokemon bulbasaur --verbose
 ```
 
-### Example Output
+### Output Formats
+```bash
+# JSON output
+pokecli pokemon squirtle --output json
+
+# YAML output
+pokecli pokemon charmander --output yaml
+
+# Table output (default)
+pokecli pokemon eevee --output table
 ```
-Name: Pikachu ⚡️
-Type: Electric
-Abilities: Static, Lightning Rod
-Stats: HP: 35, Attack: 55, Defense: 40, ...
+
+### Other Commands
+```bash
+# Move information (not yet implemented)
+pokecli move thunderbolt
+
+# Item information (not yet implemented) 
+pokecli item pokeball
+
+# Clear cache
+pokecli clear-cache
 ```
 
----
+## Command Reference
 
-## CLI Options 🧰
+### Global Options
+- `--output, -o`: Output format (table, json, yaml)
+- `--no-cache`: Disable caching
+- `--verbose, -v`: Enable verbose output
+- `--help, -h`: Show help information
 
-| Option         | Description                       |
-| -------------- | --------------------------------- |
-| `--name`       | Search Pokémon by name            |
-| `--type`       | Filter Pokémon by type            |
-| `--id`         | Search Pokémon by ID              |
-| `--format`     | Output format (json, table, etc.) |
-| `--help`       | Show help message                 |
+### Subcommands
+- `pokemon <name_or_id>`: Get Pokemon information
+  - `--detailed, -d`: Show detailed information
+- `move <name_or_id>`: Get move information (planned)
+- `item <name_or_id>`: Get item information (planned)
+- `clear-cache`: Clear the local cache
 
----
+## Architecture
 
-## Contributing 🤝
+The project follows a modular architecture:
 
-Pull requests, issues, and suggestions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) first.
+```
+src/
+├── api/          # PokeAPI client and data models
+├── cache/        # Caching implementations
+├── cli/          # Command line interface
+├── config/       # Configuration management
+├── output/       # Output formatters and themes
+├── error.rs      # Error handling
+├── utils.rs      # Utility functions
+└── main.rs       # Entry point
+```
 
----
+## Contributing
 
-## License 📄
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-MIT License. See [LICENSE](LICENSE) for details.
+## License
 
----
+MIT License - see [LICENSE](LICENSE) for details.
 
-## Links 🔗
-- [PokeAPI](https://pokeapi.co)
-- [Rust](https://www.rust-lang.org)
-- [GitHub Repo](https://github.com/username/pokecli)
+## Links
 
----
-
-Made with ❤️ by bgreenwell
+- [PokeAPI](https://pokeapi.co) - The Pokemon data source
+- [Rust](https://www.rust-lang.org) - Programming language
+- [GitHub Repository](https://github.com/bgreenwell/pokecli)
