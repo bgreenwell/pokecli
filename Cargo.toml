@@ -1,0 +1,58 @@
+[package]
+name = "pokecli"
+version = "0.1.0"
+edition = "2021"
+authors = ["bgreenwell <email@example.com>"]
+description = "A fast and user-friendly command line tool for searching, retrieving, and displaying detailed Pokémon data from the PokeAPI. Supports advanced queries, filtering, and formatted output for trainers and enthusiasts."
+repository = "https://github.com/username/pokecli"
+license = "MIT"
+keywords = ["pokemon", "api", "cli", "pokeapi"]
+categories = ["command-line-utilities"]
+
+[[bin]]
+name = "pokecli"
+path = "src/main.rs"
+
+[dependencies]
+# CLI framework
+clap = { version = "4.0", features = ["derive"] }
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json"] }
+
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+
+# JSON serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Output formatting
+colored = "2.0"
+tabled = "0.14"
+
+# Configuration
+config = "0.13"
+dirs = "5.0"
+
+# Caching (optional)
+sled = { version = "0.34", optional = true }
+
+# Fuzzy search
+fuzzy-matcher = { version = "0.3", optional = true }
+
+[dev-dependencies]
+wiremock = "0.5"
+tempfile = "3.0"
+assert_cmd = "2.0"
+predicates = "3.0"
+
+[features]
+default = ["cache", "fuzzy"]
+cache = ["sled"]
+fuzzy = ["fuzzy-matcher"]
