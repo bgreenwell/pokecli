@@ -1,5 +1,7 @@
 # PokeCLI
 
+> **Note:** This package was developed as part of a live demonstration for course IS 4010 - Application Development with Artificial Intelligence.
+
 A fast and user-friendly command line tool for querying Pokemon data via the PokeAPI. Built with Rust for performance and reliability.
 
 ## Features
